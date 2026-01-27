@@ -5,8 +5,9 @@ import axios, { AxiosError } from "axios";
 dotenv.config();
 
 const port = process.env["PORT"] || 4000;
+const accoundId = process.env["ACCOUNT_ID"] || 22709045;
 
-const baseUrl = 'https://api.themoviedb.org/3/account/22709045/favorite/movies?language=en-US&page=1&sort_by=created_at.asc';
+const baseUrl = `https://api.themoviedb.org/3/account/${accoundId}/favorite/movies?language=en-US&page=1&sort_by=created_at.asc`;
 
 const app = express();
 
