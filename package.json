@@ -2,8 +2,7 @@
   "name": "tmdb_cli_tool",
   "version": "1.0.0",
   "description": "https://roadmap.sh/projects/tmdb-cli",
-  "main": "index.js",
-  "devDependencies": {},
+  "main": "dist/app.js",
   "scripts": {
     "build": "tsc",
     "start": "node dist/app.js",
@@ -26,7 +25,8 @@
     "@types/node": "^25.0.10",
     "express": "^5.2.1",
     "nodemon": "^3.1.11",
+    "tsc-watch": "^7.2.0",
     "typescript": "^5.9.3"
   },
-  "type":"module"
+  "type": "module"
 }
