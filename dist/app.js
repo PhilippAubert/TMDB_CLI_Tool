@@ -17,4 +17,4 @@ const { data } = await axios({
         Authorization: `Bearer ${process.env["API_TOKEN"]}`
     }
 });
-console.log(data);
+data.results.forEach((item) => console.log(item.original_title));
