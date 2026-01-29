@@ -1,0 +1,35 @@
+{
+  "name": "tmdb_cli_tool",
+  "version": "1.0.0",
+  "description": "https://roadmap.sh/projects/tmdb-cli",
+  "main": "dist/app.js",
+  "scripts": {
+    "build": "tsc && chmod +x dist/app.js",
+    "dev": "tsc-watch --project tsconfig.json --onSuccess \"nodemon dist/bin/www.js\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "tmdb-app": "./dist/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PhilippAubert/TMDB_CLI_Tool.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PhilippAubert/TMDB_CLI_Tool/issues"
+  },
+  "homepage": "https://github.com/PhilippAubert/TMDB_CLI_Tool#readme",
+  "dependencies": {
+    "@types/node": "^25.0.10",
+    "axios": "^1.13.3",
+    "commander": "^14.0.2",
+    "dotenv": "^17.2.3",
+    "nodemon": "^3.1.11",
+    "tsc-watch": "^7.2.0",
+    "typescript": "^5.9.3"
+  },
+  "type": "module"
+}
