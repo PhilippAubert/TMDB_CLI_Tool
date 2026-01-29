@@ -1,28 +1,38 @@
 #!/usr/bin/env node
 
 import dotenv from "dotenv";
+import program from "./commander.js";
 import axios from "axios";
 
+import { getCategory, getUrl } from "./helpers.js";
+
+import type { Movie } from "./types.js";
+
 dotenv.config();
+  
+const args = program.args;
 
-//const accoundId = process.env["ACCOUNT_ID"] || 22709045;
+if (!args[0]) {
+    console.error("invalid category!");
+    process.exit(1);
+}
 
-//const baseUrl = `https://api.themoviedb.org/3/account/${accoundId}/movie/popular?language=en-US&page=1';`;
-//const baseUrl2 = "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
-const baseUrl3 = "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
-// const baseUrl4 = "https://api.themoviedb.org/3/movie/top_rated";
-// const baseUrl5 = "https://api.themoviedb.org/3/movie/upcoming";
+const category = getCategory(args[0]);
+const urlFromQuery = getUrl(category);
 
-
-console.log(process.argv);
-
-const {data} = await axios({
-    method: "get",
-    url: baseUrl3,
-    headers: {
-        accept: 'application/json',
-        Authorization:`Bearer ${process.env["API_TOKEN"]}`
-    }
-});
-
-console.log(data);
+try {
+    const {data} = await axios({
+        method: "get",
+        url: urlFromQuery,
+        headers: {
+            accept: 'application/json',
+            Authorization:`Bearer ${process.env["API_TOKEN"]}`
+        }});
+        data.results.forEach((movie:Movie) => console.log(
+            movie.original_title,`(${movie.original_language})`, "\n",
+            movie.vote_average, 
+            movie.vote_count)
+        );
+    } catch (e) {
+    console.error(e);
+}
